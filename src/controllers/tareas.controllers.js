@@ -15,3 +15,13 @@ export const crearTarea = async(req,res)=>{
         res.status(500).json({mensaje: "Ocurrio un error al intentar crear la tarea"})
     }
 }
+
+export const listarTareas = async(req,res)=>{
+    try {
+        const tareas = await Tarea.find()
+        res.status(200).json(tareas)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({mensaje: "Ocurrio un error al intentar crear la tarea"})
+    }
+}
