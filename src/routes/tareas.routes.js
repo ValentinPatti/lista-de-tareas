@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { test } from "../controllers/tareas.controllers.js";
 
 const router = Router()
 
-router.route('/test').get((req,res)=>{
-    res.json({mensaje: "Bienvenidos al backend de lista de tareas"})
-})
+router.route('/test').get(test)
 
 export default router
