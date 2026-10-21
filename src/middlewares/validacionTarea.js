@@ -12,7 +12,7 @@ export const validacionTarea = [
     .withMessage(
       "El nombre de la tarea debe contener entre 4 y 100 caracteres",
     )
-    .custom(async (validationResult, {req})=>{
+    .custom(async (valor, {req})=>{
         const tareaExistente = await Tarea.findOne({nombreTarea: valor})
         if (!tareaExistente) {
             return true
