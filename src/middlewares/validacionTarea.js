@@ -6,6 +6,8 @@ export const validacionTarea = [
     .notEmpty()
     .withMessage("El nombre de la tarea es obligatoria")
     .isString()
-    .withMessage('El nombre de la tarea tiene que ser un String'),
+    .withMessage('El nombre de la tarea tiene que ser un String')
+    .isLength({min: 4, max: 100})
+    .withMessage('El nombre de la tarea debe contener entre 4 y 100 caracteres'),
     resultadoValidacion
 ];
