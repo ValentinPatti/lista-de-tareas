@@ -1,5 +1,6 @@
 import { body, param } from "express-validator";
 import resultadoValidacion from "./resultadoValidacion.js";
+import Tarea from "../models/tarea.js";
 
 export const validacionTarea = [
   body("nombreTarea")
@@ -10,7 +11,14 @@ export const validacionTarea = [
     .isLength({ min: 4, max: 100 })
     .withMessage(
       "El nombre de la tarea debe contener entre 4 y 100 caracteres",
-    ),
+    )
+    .custom(async (validationResult, {req})=>{
+        const tareaExistente = await Tarea.findOne({nombreTarea: valor})
+        if (!tareaExistente) {
+            return true
+        }
+        throw new Error('La tarea ya existe en la base de datos')
+    }),
   resultadoValidacion,
 ];
 
